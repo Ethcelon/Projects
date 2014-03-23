@@ -1,0 +1,33 @@
+<html><head>
+<title>primes2.py</title>
+<meta name="Generator" content="htmlizer/[twisted, version 13.0.0]" />
+<link rel="alternate" href="primes2.py" type="text/x-python" />
+
+</head>
+<body>
+<pre><span class="py-src-keyword">def</span> <span class="py-src-identifier">primes_sieve</span>(<span class="py-src-parameter">limit</span>):
+    <span class="py-src-variable">a</span> = [<span class="py-src-variable">True</span>] * <span class="py-src-variable">limit</span>
+    <span class="py-src-variable">a</span>[<span class="py-src-number">0</span>] = <span class="py-src-variable">a</span>[<span class="py-src-number">1</span>] = <span class="py-src-variable">False</span>
+    
+    <span class="py-src-keyword">for</span> (<span class="py-src-variable">i</span>, <span class="py-src-variable">isprime</span>) <span class="py-src-keyword">in</span> <span class="py-src-variable">enumerate</span>(<span class="py-src-variable">a</span>):
+        <span class="py-src-keyword">if</span> <span class="py-src-variable">isprime</span>:
+            <span class="py-src-keyword">for</span> <span class="py-src-variable">n</span> <span class="py-src-keyword">in</span> <span class="py-src-variable">xrange</span>(<span class="py-src-variable">i</span>*<span class="py-src-variable">i</span>, <span class="py-src-variable">limit</span>, <span class="py-src-variable">i</span>):
+                <span class="py-src-variable">a</span>[<span class="py-src-variable">n</span>] = <span class="py-src-variable">False</span>
+    <span class="py-src-keyword">return</span> <span class="py-src-variable">a</span>
+
+<span class="py-src-keyword">def</span> <span class="py-src-identifier">prime</span>():
+    <span class="py-src-variable">n</span> = <span class="py-src-variable">int</span>(<span class="py-src-variable">raw_input</span>(<span class="py-src-string">'Enter the number to find prime factors of:'</span>))
+    <span class="py-src-variable">factors</span> = []
+    <span class="py-src-variable">prime_list</span> = <span class="py-src-variable">primes_sieve</span>(<span class="py-src-variable">n</span>)
+    <span class="py-src-keyword">for</span> <span class="py-src-variable">i</span> <span class="py-src-keyword">in</span> <span class="py-src-variable">range</span>(<span class="py-src-number">2</span>, <span class="py-src-variable">n</span>+<span class="py-src-number">1</span>):
+        <span class="py-src-keyword">while</span> <span class="py-src-variable">n</span>%<span class="py-src-variable">i</span> == <span class="py-src-number">0</span>:
+            <span class="py-src-keyword">if</span> <span class="py-src-variable">prime_list</span>[<span class="py-src-variable">i</span>] == <span class="py-src-variable">True</span>:
+                <span class="py-src-variable">factors</span>.<span class="py-src-variable">append</span>(<span class="py-src-variable">i</span>)
+            <span class="py-src-variable">n</span> /= <span class="py-src-variable">i</span>
+    <span class="py-src-variable">factors_</span> = <span class="py-src-string">' x '</span>.<span class="py-src-variable">join</span>([<span class="py-src-variable">str</span>(<span class="py-src-variable">i</span>) <span class="py-src-keyword">for</span> <span class="py-src-variable">i</span> <span class="py-src-keyword">in</span> <span class="py-src-variable">factors</span>])
+    <span class="py-src-keyword">print</span> <span class="py-src-variable">factors_</span>
+
+
+<span class="py-src-variable">prime</span>()
+</pre>
+</body>
